@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  skip_before_action :authorize
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_isnt_empty, only: :new
@@ -33,13 +34,16 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
-        session[:cart_id].nil
+        session[:cart_id] = nil
         OrderMailer.received(@order).deliver_later
-        format.html { redirect_to store_index_url, notice: 'Thank you for your order.' }
-        format.json { render :show, status: :created, location: @order }
+        format.html { redirect_to store_index_url, notice: 
+          'Thank you for your order.' }
+        format.json { render :show, status: :created,
+          location: @order }
       else
         format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.json { render json: @order.errors,
+          status: :unprocessable_entity }
       end
     end
   end

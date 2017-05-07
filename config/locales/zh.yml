@@ -1,0 +1,54 @@
+zh:
+
+  number:
+    currency:
+      format:
+        unit:      "$US"
+        precision: 2
+        separator: "."
+        delimiter: ","
+        format:    "%n&nbsp;%u"
+
+  activerecord:
+    errors:
+      messages:
+        inclusion: "请选择"
+        blank: "质料空缺"
+  errors:
+    template:
+      body:        "请输入以下资料:"
+      header:       
+        one:       "一个错误避免 %{model} 保存"
+        other:     "%{count} 错误避免 %{model} 保存"
+
+  layouts:
+    application:
+      title:       "实用书店"
+      home:        "首页"
+      questions:   "咨询"
+      news:        "新闻"
+      contact:     "联系我们"
+
+  carts:
+    cart:
+      title:       "购物袋"
+      empty:       "清空购物袋"
+      checkout:    "提交订单"
+
+  store:
+    index:
+      title_html:  "你的实用书店目录"
+      add_html:    "放入购物袋"
+
+  orders:
+    new:
+      legend:       "请填写核对订单信息"
+    form:
+      name:         "姓名"
+      address_html: "地址"
+      email:        "电邮"
+      pay_type:     "支付方式"
+      pay_prompt_html: "选择支付方式"
+      submit:       "立即结算"
+
+  thanks:  "谢谢光顾"

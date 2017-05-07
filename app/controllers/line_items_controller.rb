@@ -1,4 +1,5 @@
 class LineItemsController < ApplicationController
+  skip_before_action :authorize
   include CurrentCart
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
@@ -33,10 +34,12 @@ class LineItemsController < ApplicationController
       if @line_item.save
         format.html { redirect_to store_index_url }
         format.js { @current_item = @line_item }
-        format.json { render :show, status: :created, location: @line_item }
+        format.json { render :show, 
+          status: :created, location: @line_item }
       else
         format.html { render :new }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.json { render json: @line_item.errors, 
+          status: :unprocessable_entity }
       end
     end
   end
@@ -60,7 +63,7 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to store_index_url}
+      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

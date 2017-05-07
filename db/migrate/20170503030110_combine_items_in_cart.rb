@@ -23,6 +23,8 @@ class CombineItemsInCart < ActiveRecord::Migration[5.0]
           product_id: line_item.product_id,
           quantity: 1
         )
+        end
       line_item.destroy
+    end
   end
 end
